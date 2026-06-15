@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import fp from 'fastify-plugin';
-import cors from '@fastify/cors';
+// import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import { env } from '../config/env';
@@ -11,11 +11,11 @@ export default fp(async function securityPlugin(app: FastifyInstance): Promise<v
     contentSecurityPolicy: env.NODE_ENV === 'production',
   });
 
-  await app.register(cors, {
-    origin: env.CORS_ORIGIN,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  });
+  // await app.register(cors, {
+  //   origin: env.CORS_ORIGIN,
+  //   credentials: true,
+  //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  // });
 
   if (env.NODE_ENV !== 'test') {
     // Try to use Redis for rate-limiting; fall back to in-memory if Redis is unavailable.
